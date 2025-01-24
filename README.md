@@ -17,4 +17,4 @@ share all your thoughts into one place.
 
 This webpage is deployed to Github Pages
 
--   Deployment Link:
+-   [Deployment Link](https://luidelson.github.io/se_project_spots/)
