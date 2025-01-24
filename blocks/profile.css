@@ -17,6 +17,11 @@
     margin-top: 138px;
 }
 
+.profile__add-btn:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
 .profile__name {
     margin: 0 0 12px;
     font-weight: 500px;
@@ -55,6 +60,11 @@
     display: flex;
     gap: 8px;
     padding-left: 0;
+}
+
+.profile__edit-btn:hover {
+    cursor: pointer;
+    opacity: 0.9;
 }
 
 .profile__description {
