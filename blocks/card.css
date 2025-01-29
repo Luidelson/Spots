@@ -30,6 +30,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    color: #212121;
 }
 
 @media screen and (max-width: 627px) {
