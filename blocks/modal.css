@@ -24,6 +24,7 @@
     width: 100%;
     box-sizing: border-box;
     position: relative;
+    border-radius: 8px;
 }
 
 .modal__close-btn {
@@ -32,6 +33,15 @@
     right: 50px;
     width: 40px;
     height: 40px;
+    background-image: url(../images/exit-button.png);
+    background-color: transparent;
+    opacity: 0.4;
+    border: none;
+}
+
+.modal__close-btn:hover {
+    opacity: 100%;
+    cursor: pointer;
 }
 
 .modal__title {
@@ -46,16 +56,34 @@
     flex-direction: column;
     gap: 8px;
     margin-bottom: 32px;
+    font-family: "Poppins";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 17.6px;
 }
 
 .modal__input {
     display: block;
     padding: 16px 12px;
+    font-family: "Poppins", Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    border-width: 1px;
+    border-radius: 8px;
 }
 
 .modal__submit-btn {
     width: 156px;
     padding: 18px 0;
+    background-color: #212121;
+    color: #fff;
+    border-radius: 8px;
+    border-width: 1px;
+}
+
+.modal__submit-btn:hover {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
