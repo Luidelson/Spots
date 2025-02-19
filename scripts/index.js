@@ -30,7 +30,7 @@ const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
-const EditFormElement = editProfileModal.querySelector(".modal__form");
+const editFormElement = editProfileModal.querySelector(".modal__form");
 const editModalCloseButton = document.querySelector(".modal__close-btn");
 const editModalNameInput = editProfileModal.querySelector(
     "#profile-name-input"
@@ -49,7 +49,11 @@ function getCardElement(data) {
 
     const cardNameEl = cardElement.querySelector(".card__title");
 
+    const cardImageEl = cardElement.querySelector(".card__image");
+
     cardNameEl.textContent = data.name;
+    cardImageEl.src = data.link;
+    cardImageEl.alt = data.name;
 
     return cardElement;
 }
@@ -74,7 +78,7 @@ function handleEditFormSubmit(evt) {
 profileEditButton.addEventListener("click", openModal);
 
 editModalCloseButton.addEventListener("click", closeModal);
-EditFormElement.addEventListener("submit", handleEditFormSubmit);
+editFormElement.addEventListener("submit", handleEditFormSubmit);
 
 for (let i = 0; i < initialCards.length; i++) {
     const cardElement = getCardElement(initialCards[i]);
