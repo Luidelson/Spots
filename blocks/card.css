@@ -20,6 +20,15 @@
     opacity: 1;
 }
 
+.card__like-button_liked {
+    background-image: url(../images/liked.svg);
+    opacity: 1;
+}
+
+.card__like-button_liked:hover {
+    background-image: url(../images/like.hover.svg);
+}
+
 .card__content {
     display: flex;
     justify-content: space-between;
