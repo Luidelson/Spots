@@ -39,6 +39,7 @@ const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
+const previewModalCloseButton = previewModal.querySelector(".modal__close-btn");
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editFormElement = editProfileModal.querySelector(".modal__form");
@@ -62,6 +63,7 @@ function getCardElement(data) {
 
     const cardImageEl = cardElement.querySelector(".card__image");
     const cardLikeBtn = cardElement.querySelector(".card__like-button");
+    const cardDeleteBtn = cardElement.querySelector(".card__delete-icon"); //Added Delete button
     //TODO -select delete button
 
     cardNameEl.textContent = data.name;
@@ -78,8 +80,12 @@ function getCardElement(data) {
         previewModalCaptionEl.alt = data.name;
         previewModalCaptionEl.textContent = data.name;
     });
-    //TODO set listener on delete button
-    // The handler should remove card from DOM
+
+    cardDeleteBtn.addEventListener("click", () => {
+        cardElement.remove(cardDeleteBtn); //DONE
+    });
+    //TODO set listener on delete button     //DONE
+    // The handler should remove card from DOM   //DONE
     return cardElement;
 }
 
@@ -100,14 +106,15 @@ function handleEditFormSubmit(evt) {
 
 function handleAddCardSubmit(evt) {
     evt.preventDefault();
-    //make image appear when adding card
+    //make image appear when adding card    //DONE
     const inputValues = {
         name: cardNameInput.value,
         link: cardLinkInput.value,
     };
     const cardElement = getCardElement(inputValues);
-    //TODO make sure card appear at top of list
-    cardsList.append(cardElement);
+    //TODO make sure card appear at top of list    //DONE
+    cardsList.prepend(cardElement);
+    closeModal(cardModal);
 }
 
 profileEditButton.addEventListener("click", () => {
@@ -126,6 +133,10 @@ cardModalBtn.addEventListener("click", () => {
 
 cardModalCloseBtn.addEventListener("click", () => {
     closeModal(cardModal);
+});
+
+previewModalCloseButton.addEventListener("click", () => {
+    closeModal(previewModal);
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
