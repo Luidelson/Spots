@@ -79,6 +79,7 @@ function getCardElement(data) {
         previewModalImageEl.src = data.link;
         previewModalCaptionEl.alt = data.name;
         previewModalCaptionEl.textContent = data.name;
+        previewModalImageEl.alt = data.name;
     });
 
     cardDeleteBtn.addEventListener("click", () => {
@@ -114,6 +115,7 @@ function handleAddCardSubmit(evt) {
     const cardElement = getCardElement(inputValues);
     //TODO make sure card appear at top of list    //DONE
     cardsList.prepend(cardElement);
+    evt.target.reset();
     closeModal(cardModal);
 }
 
