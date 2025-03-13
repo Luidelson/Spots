@@ -124,11 +124,6 @@
     border: 1px solid #ff000099;
 }
 
-.modal__button_disabled {
-    background: #212121;
-    opacity: 0.5;
-}
-
 .modal__submit-btn {
     width: 156px;
     padding: 18px 0;
@@ -137,6 +132,11 @@
     border-radius: 8px;
     border-width: 1px;
     font-family: "poppins", Arial, Helvetica, sans-serif;
+}
+
+.modal__submit-btn:disabled {
+    background: #212121;
+    opacity: 0.5;
 }
 
 .modal__submit-btn:hover {

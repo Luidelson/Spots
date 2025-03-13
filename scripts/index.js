@@ -43,6 +43,7 @@ const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
 const previewModalCloseButton = previewModal.querySelector(".modal__close-btn");
+const modals = document.querySelectorAll(".modal");
 
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editFormElement = editProfileModal.querySelector(".modal__form");
@@ -56,6 +57,21 @@ const editModalDescriptionInput = editProfileModal.querySelector(
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
+
+function handleEscape(evt) {
+    if (evt.key === "Escape") {
+        const activeModal = document.querySelector(".modal_opened");
+        closeModal(activeModal);
+    }
+}
+
+modals.forEach((modal) => {
+    modal.addEventListener("mousedown", (evt) => {
+        if (evt.target.classList.contains("modal")) {
+            closeModal(modal);
+        }
+    });
+});
 
 function getCardElement(data) {
     const cardElement = cardTemplate.content
@@ -94,10 +110,12 @@ function getCardElement(data) {
 
 function openModal(modal) {
     modal.classList.add("modal_opened");
+    document.addEventListener("keyup", handleEscape);
 }
 
 function closeModal(modal) {
     modal.classList.remove("modal_opened");
+    document.removeEventListener("keyup", handleEscape);
 }
 
 function handleEditFormSubmit(evt) {
