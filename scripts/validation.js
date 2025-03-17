@@ -2,7 +2,7 @@ const settings = {
     formSelector: ".modal__form",
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__submit-btn",
-    inactiveButtonClass: "modal__button_disabled",
+    inactiveButtonClass: ".modal__submit-btn_disabled",
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible",
 };
@@ -12,7 +12,7 @@ const showInputError = (formElement, inputElement, errorMsg, config) => {
         `#${inputElement.id}-error`
     );
     errorMsgElement.textContent = errorMsg;
-    inputElement.classList.add("modal__input_type_error");
+    inputElement.classList.add(config.inputErrorClass);
 };
 
 const hideInputError = (formElement, inputElement, config) => {
@@ -20,18 +20,19 @@ const hideInputError = (formElement, inputElement, config) => {
         `#${inputElement.id}-error`
     );
     errorMsgElement.textContent = "";
-    inputElement.classList.remove("modal__input_type_error");
+    inputElement.classList.remove(config.inputErrorClass);
 };
 
-const checkInputValidity = (formElement, inputElement) => {
+const checkInputValidity = (formElement, inputElement, config) => {
     if (!inputElement.validity.valid) {
         showInputError(
             formElement,
             inputElement,
-            inputElement.validationMessage
+            inputElement.validationMessage,
+            config
         );
     } else {
-        hideInputError(formElement, inputElement);
+        hideInputError(formElement, inputElement, config);
     }
 };
 
