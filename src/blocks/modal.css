@@ -58,7 +58,7 @@
 }
 
 .modal__close-btn_type_preview {
-    background-image: url(../images/Close\ Icon.svg);
+    background-image: url(../images/Close.Icon.svg);
     top: 0;
     right: -52.5px;
     opacity: 1;
@@ -133,6 +133,28 @@
     border-width: 1px;
     font-family: "poppins", Arial, Helvetica, sans-serif;
 }
+
+/* .avatar__delete-btn {
+    width: 156px;
+    padding: 18px 0;
+    background-color: #ff6565;
+    color: #fff;
+    border-radius: 8px;
+    border-width: 1px;
+    font-family: "poppins", Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+.avatar__cancel-btn {
+    width: 156px;
+    padding: 18px 0;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    border-radius: 8px;
+    border-width: 1px;
+    font-family: "poppins", Arial, Helvetica, sans-serif;
+} */
 
 .modal__submit-btn:disabled {
     background: #212121;
