@@ -192,16 +192,17 @@
                     id="profile-edit-form"
                     novalidate
                 >
-                    <label for="profile-avatar-input" class="modal__label"
-                        >Avatar
+                    <label for="profile-avatar-input" class="modal__label">
+                        Avatar
                         <input
                             id="profile-avatar-input"
                             class="modal__input"
                             placeholder="avatar goes here"
+                            type="url"
                             required
                         />
                         <span
-                            id="profile-name-input-error"
+                            id="profile-avatar-input-error"
                             class="modal__error"
                         ></span>
                     </label>
@@ -221,7 +222,7 @@
                     Are you sure you want to delete this image?
                 </h2>
                 <form class="modal__form" id="delete-form" novalidate>
-                    <button type="submit" class="modal__submit-btn">
+                    <button type="submit" class="modal__delete-btn">
                         Delete
                     </button>
                     <button

@@ -134,6 +134,20 @@
     font-family: "poppins", Arial, Helvetica, sans-serif;
 }
 
+.modal__delete-btn {
+    width: 156px;
+    padding: 18px 0;
+    background-color: #ff6565;
+    color: #fff;
+    border-radius: 8px;
+    border-width: 1px;
+    font-family: "poppins", Arial, Helvetica, sans-serif;
+}
+
+.modal__delete-btn:hover {
+    cursor: pointer;
+}
+
 /* .avatar__delete-btn {
     width: 156px;
     padding: 18px 0;

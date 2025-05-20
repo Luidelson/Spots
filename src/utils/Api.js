@@ -4,6 +4,13 @@ class Api {
         this._headers = headers;
     }
 
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Error: ${res.status}`);
+    }
+
     getAppInfo() {
         return Promise.all([this.getInitialCards(), this.getUserInfo()]).then(
             ([cards, userData]) => {
@@ -109,24 +116,14 @@ class Api {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: "PUT",
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        });
+        }).then(this._checkResponse);
     }
 
     removeLike(id) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
             method: "DELETE",
             headers: this._headers,
-        }).then((res) => {
-            if (res.ok) {
-                return res.json();
-            }
-            return Promise.reject(`Error: ${res.status}`);
-        });
+        }).then(this._checkResponse);
     }
 }
 

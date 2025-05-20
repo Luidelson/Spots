@@ -130,50 +130,44 @@ function getCardElement(data) {
         .querySelector(".card")
         .cloneNode(true);
 
-    //Card Elements
+    // Card Elements
     const cardNameEl = cardElement.querySelector(".card__title");
     const cardImageEl = cardElement.querySelector(".card__image");
     const cardLikeBtn = cardElement.querySelector(".card__like-button");
     const cardDeleteBtn = cardElement.querySelector(".card__delete-icon");
 
-    //TODO - if the card is liked set the active class on the card
-
+    // Set card content
     cardNameEl.textContent = data.name;
     cardImageEl.src = data.link;
     cardImageEl.alt = data.name;
 
-    function handleLike(evt, id) {
-        // remove - evt.target.classList.toggle("card__like-button_liked");
-        // 1. check weather the card is liked or not
-        // const isLiked=?
-        // 2.call the handkeLikeStatus method,passing the appropriate arguements
-        // 3.handle the response (.then and .catch)
-        // 4.in the .then toggle the active class
+    if (data.isLiked) {
+        cardLikeBtn.classList.add("card__like-button_liked");
     }
 
+    // Like button logic
     cardLikeBtn.addEventListener("click", () => {
         const isLiked = cardLikeBtn.classList.contains(
             "card__like-button_liked"
         );
-        const cardId = data._id; // Use the card's real ID
+        const cardId = data._id;
 
         if (isLiked) {
             api.removeLike(cardId)
-                .then((updatedCard) => {
+                .then(() => {
                     cardLikeBtn.classList.remove("card__like-button_liked");
-                    // Optionally update like counter here
                 })
                 .catch(console.error);
         } else {
             api.addLike(cardId)
-                .then((updatedCard) => {
+                .then(() => {
                     cardLikeBtn.classList.add("card__like-button_liked");
-                    // Optionally update like counter here
                 })
                 .catch(console.error);
         }
     });
 
+    // Image preview logic
     cardImageEl.addEventListener("click", () => {
         openModal(previewModal);
         previewModalImageEl.src = data.link;
@@ -181,6 +175,7 @@ function getCardElement(data) {
         previewModalImageEl.alt = data.name;
     });
 
+    // Delete button logic
     cardDeleteBtn.addEventListener("click", () => {
         handleDeleteCard(cardElement, data._id);
     });
@@ -222,6 +217,9 @@ function handleEditFormSubmit(evt) {
 function handleAddCardSubmit(evt) {
     evt.preventDefault();
 
+    const submitBtn = evt.submitter || cardSubmitBtn;
+    setbuttonText(submitBtn, true, "Saving...", "Save");
+
     const inputValues = {
         name: cardNameInput.value,
         link: cardLinkInput.value,
@@ -235,7 +233,10 @@ function handleAddCardSubmit(evt) {
             disabledButton(cardSubmitBtn, settings);
             closeModal(cardModal);
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => {
+            setbuttonText(submitBtn, false, "Saving...", "Save");
+        });
 }
 
 function handleAvatarSubmit(evt) {
@@ -275,17 +276,24 @@ function handleAvatarSubmit(evt) {
 
 function handleDeleteSubmit(evt) {
     evt.preventDefault();
+
+    const submitBtn =
+        evt.submitter || deleteModal.querySelector(".modal__submit-btn");
+    setbuttonText(submitBtn, true, "Deleting...", "Delete");
+
     api.deleteCard(selectedCardId)
         .then(() => {
             if (selectedCard) {
                 selectedCard.remove();
             }
             closeModal(deleteModal);
-
             selectedCard = null;
             selectedCardId = null;
         })
-        .catch(console.error);
+        .catch(console.error)
+        .finally(() => {
+            setbuttonText(submitBtn, false, "Deleting...", "Delete");
+        });
 }
 function handleDeleteCard(cardElement, cardId) {
     selectedCard = cardElement;
