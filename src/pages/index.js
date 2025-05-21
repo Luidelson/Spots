@@ -264,6 +264,7 @@ function handleAvatarSubmit(evt) {
                 }
                 closeModal(avatarModal);
                 evt.target.reset();
+                disabledButton(avatarSubmitBtn, settings);
             } else {
                 console.error("API did not return a valid avatar URL.", data);
             }
