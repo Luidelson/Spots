@@ -52,7 +52,7 @@ api.getAppInfo()
         });
         profileName.textContent = userInfo.name;
         profileDescription.textContent = userInfo.about;
-        const profileAvatar = document.querySelector(".profile__avatar");
+
         profileAvatar.src = userInfo.avatar;
     })
     .catch((err) => {
@@ -65,6 +65,7 @@ const cardModalBtn = document.querySelector(".profile__add-btn");
 const avatarModalBtn = document.querySelector(".profile__avatar-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
+const profileAvatar = document.querySelector(".profile__avatar");
 
 //Card Form Elements
 const cardModal = document.querySelector("#add-card-modal");
@@ -84,7 +85,7 @@ const deleteModalCloseBtn = deleteModal.querySelector(".modal__close-btn");
 const avatarModal = document.querySelector("#avatar-modal");
 const avatarForm = avatarModal.querySelector(".modal__form");
 const avatarSubmitBtn = avatarModal.querySelector(".modal__submit-btn");
-const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
+
 const avatarInput = avatarModal.querySelector("#profile-avatar-input");
 const avatarCloseBtn = avatarModal.querySelector(".modal__close-btn");
 
@@ -255,8 +256,6 @@ function handleAvatarSubmit(evt) {
     api.editAvatarInfo(avatarUrl)
         .then((data) => {
             if (data && data.avatar) {
-                const profileAvatar =
-                    document.querySelector(".profile__avatar");
                 if (profileAvatar) {
                     profileAvatar.src = data.avatar;
                 } else {
@@ -351,7 +350,5 @@ editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 avatarForm.addEventListener("submit", handleAvatarSubmit);
 deleteForm.addEventListener("submit", handleDeleteSubmit);
-
-resetValidation();
 
 enableValidation(settings);

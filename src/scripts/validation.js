@@ -2,7 +2,7 @@ export const settings = {
     formSelector: ".modal__form",
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__submit-btn",
-    inactiveButtonClass: ".modal__submit-btn_disabled",
+    inactiveButtonClass: "modal__submit-btn_disabled",
     inputErrorClass: "modal__input_type_error",
     errorClass: "modal__error_visible",
 };
@@ -49,6 +49,8 @@ const hasInvalidInput = (inputList) => {
 };
 
 const toggleButtonState = (inputList, buttonElement, config) => {
+    if (!buttonElement) return; // Add this check
+
     if (hasInvalidInput(inputList)) {
         disabledButton(buttonElement, config);
     } else {
@@ -58,8 +60,7 @@ const toggleButtonState = (inputList, buttonElement, config) => {
 
 export const disabledButton = (buttonElement, config) => {
     buttonElement.disabled = true;
-    //TODO add modifier class to buttonElement to make it grey
-    //Dont forget CSS
+    buttonElement.classList.add(config.inactiveButtonClass); // Add the modifier class
 };
 
 export function resetValidation(formElement, inputElements = [], settings) {
